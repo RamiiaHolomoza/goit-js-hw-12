@@ -16,6 +16,7 @@ export function showError(error) {
 }
 
 export function createGallary(data) {
+    const galleryList = document.querySelector('.gallery-list');
     const lightbox = new SimpleLightbox('.gallery-item a', {
     captions: true,
     captionSelector: 'img',
@@ -40,9 +41,8 @@ export function createGallary(data) {
         </div>
     </li>`).join('');
 
-    document.querySelector('.gallery-list').insertAdjacentHTML("beforeend", images);
+    galleryList.insertAdjacentHTML("beforeend", images);
     lightbox.refresh();
-    // lightbox.on('show.simplelightbox', function () {})
 }
 
 export function cleanGallery() {

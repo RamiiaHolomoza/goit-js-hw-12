@@ -60,21 +60,35 @@
   border: 1px solid #4e75ff;
 }
 
-.submit-btn {
+button{
+  font-family: Montserrat, sans-serif;
   font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;  /* line-height: 150%; */
+  letter-spacing: 0.64px;
   color: #fff;
-
+  background: #4e75ff;
   border-radius: 8px;
   border: 0;
   padding: 8px 16px;
-  letter-spacing: 0.64px;
-  width: 91px;
-  height: 40px;
-  background: #4e75ff;
 }
 
-.submit-btn:hover,
-.submit-btn:focus {
+.submit-btn {
+  min-width: 91px;
+  height: 40px;
+}
+
+.load-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 125px;
+  margin: 32px auto;
+}
+
+button:hover,
+button:focus {
   background: #6c8cff;
   color: #fff;
 }
