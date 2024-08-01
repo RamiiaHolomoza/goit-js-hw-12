@@ -51,7 +51,7 @@ async function performSearch() {
     } else {
         // console.log(data);
         if (currentPage > 1) {
-            const galleryHeightB = document.querySelector('.gallery-list').getBoundingClientRect().height;
+        const galleryHeightB = document.querySelector('.gallery-list').getBoundingClientRect().height;
         createGallary(data);
         const galleryHeightA = document.querySelector('.gallery-list').getBoundingClientRect().height;
         console.log(document.querySelector('.gallery-list').getBoundingClientRect())
@@ -63,7 +63,11 @@ async function performSearch() {
             createGallary(data);
         }
         if (data.hits.length < resultsPerPage) { //const images = data.hits дожина галереї
-        loadMoreBtn.classList.add('hidden'); // якщо менше результатів, ховаємо кнопку
+            loadMoreBtn.classList.add('hidden'); // якщо менше результатів, ховаємо кнопку
+            return iziToast.info({
+                    position: "topRight",
+                    message: "We're sorry, but you've reached the end of search results."
+                });
         } else {
             if (data.totalHits > ( currentPage * resultsPerPage)) {
                 loadMoreBtn.classList.remove('hidden'); // показуємо кнопку "Load more"
@@ -85,6 +89,54 @@ async function performSearch() {
         input.value = '';
     }
 }
+
+// ---- другий варіант ---
+// try {
+//         const data = await searchImagesByQuery(currentQuery, currentPage, resultsPerPage);
+//         if (data.total === 0) {
+//             showError('Sorry, there are no images matching your search query. Please try again!');
+//         } else {
+//             console.log(data);
+//             const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
+//             createGallary(data);
+//             if (currentPage > 1) {
+//                 window.scrollBy({
+//                     top: cardHeight * 2, // Прокручуємо на дві висоти картки
+//                     behavior: 'smooth'
+//                 });
+//             }
+//             if (data.hits.length < resultsPerPage) { // Якщо менше результатів, ховаємо кнопку
+//                 loadMoreBtn.classList.add('hidden');
+//             } else {
+//                 if (data.totalHits > (currentPage * resultsPerPage)) {
+//                     loadMoreBtn.classList.remove('hidden'); // Показуємо кнопку "Load more"
+//                 } else {
+//                     loadMoreBtn.classList.add('hidden');
+//                     iziToast.warning({
+//                         position: 'topRight',
+//                         message: "We're sorry, but you've reached the end of search results."
+//                     });
+//                 }
+//             }
+//         }
+//     } catch (error) {
+//         showError(error.message);
+//     } finally {
+//         loader.classList.add('hidden'); // Ховаємо індикатор завантаження
+//         input.value = ''; // Скидаємо значення інпуту
+//     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // if (query === '') {
